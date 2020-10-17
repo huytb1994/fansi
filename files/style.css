@@ -2601,7 +2601,7 @@ select:focus {
 }
 
 .site-header .navbar-brand img {
-  width: auto;
+  width: 50px;
   max-width: 100%;
   display: block;
 }
