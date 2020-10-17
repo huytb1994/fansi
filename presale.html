@@ -241,6 +241,7 @@
 			}
 		</style>
 	</noscript>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script type="text/javascript" src="./files/jquery.js"></script>
 	<script type="text/javascript" src="./js/web3.min.js"></script>
 	<script type="text/javascript" src="./js/sale.js"></script>
@@ -420,10 +421,8 @@
 
 														<div id="custom_html-2" class="widget_text sidebar-widget widget widget_custom_html">
 															<div class="textwidget custom-html-widget">
-
-																<div>
-																	<button class="pay-button">Buy 250 YFIC with Metamask</button>
-																	<div id="status"></div>
+																<div id="sale">
+																	<button class="pay-button" @click="connect">Buy 250 YFIC with Metamask</button>
 																</div>
 															</div>
 														</div>
