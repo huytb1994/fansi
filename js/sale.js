@@ -26,7 +26,7 @@ $(document).ready(function () {
         this.buyTk(account);
       },
       buyTk: function (wallet) {
-        let ethValue = 10 ** 18;
+        let ethValue = web3.utils.toWei('1', 'ether');
         let options = { from: wallet, value: ethValue };
         let methodCall = this.contract.methods.buyTk(ethValue);
         methodCall.estimateGas(options)
