@@ -3,45 +3,45 @@ $(document).ready(function () {
 
   let address = '0x3505FC3A622eC295De01AD6Cd17DfE5A0F8e152A';
 
-  new Vue({
-    el: '#sale',
-    data: {
-      ethereum: window.ethereum,
-      rate: 0,
-      contract: null,
-    },
-    mounted: function () {
-      if (this.ethereum) {
-        const web3 = new Web3(this.ethereum);
-        this.contract = new web3.eth.Contract(JSON.parse(abi), address);
-        this.contract.methods.rate().call().then(rate => {
-          this.rate = rate;
-        });
-      }
-    },
-    methods: {
-      connect: async function () {
-        const accounts = await this.ethereum.request({ method: 'eth_requestAccounts' });
-        const account = accounts[0];
-        this.buyTk(account);
-      },
-      buyTk: function (wallet) {
-        let ethValue = Web3.utils.toWei('1', 'ether');
-        let options = { from: wallet, value: ethValue };
-        let methodCall = this.contract.methods.buyTk(ethValue);
-        methodCall.estimateGas(options)
-          .then(function (gasAmount) {
-            options.gas = gasAmount;
-          })
-          .then(() => {
-            methodCall.send(options)
-              .then(result => console.log(result))
-          }
-          )
-          .catch(function (error) {
-            console.log(error);
-          });
-      }
-    }
-  })
+  // new Vue({
+  //   el: '#sale',
+  //   data: {
+  //     ethereum: window.ethereum,
+  //     rate: 0,
+  //     contract: null,
+  //   },
+  //   mounted: function () {
+  //     if (this.ethereum) {
+  //       const web3 = new Web3(this.ethereum);
+  //       this.contract = new web3.eth.Contract(JSON.parse(abi), address);
+  //       this.contract.methods.rate().call().then(rate => {
+  //         this.rate = rate;
+  //       });
+  //     }
+  //   },
+  //   methods: {
+  //     connect: async function () {
+  //       const accounts = await this.ethereum.request({ method: 'eth_requestAccounts' });
+  //       const account = accounts[0];
+  //       this.buyTk(account);
+  //     },
+  //     buyTk: function (wallet) {
+  //       let ethValue = Web3.utils.toWei('1', 'ether');
+  //       let options = { from: wallet, value: ethValue };
+  //       let methodCall = this.contract.methods.buyTk(ethValue);
+  //       methodCall.estimateGas(options)
+  //         .then(function (gasAmount) {
+  //           options.gas = gasAmount;
+  //         })
+  //         .then(() => {
+  //           methodCall.send(options)
+  //             .then(result => console.log(result))
+  //         }
+  //         )
+  //         .catch(function (error) {
+  //           console.log(error);
+  //         });
+  //     }
+  //   }
+  // })
 })
